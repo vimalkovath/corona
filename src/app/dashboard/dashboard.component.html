@@ -2,78 +2,85 @@
   <h1 class="mat-h1">Dashboard</h1>
 
 
-<mat-grid-list cols="2" rowHeight="150px">
+  <mat-grid-list cols="2" rowHeight="250px">
 
     <mat-grid-tile colspan="1" rowspan="1">
-  <mat-card class="dashboard-card">
-    <mat-card-header>
-      <mat-card-title>
-Summary
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="dashboard-card-content">
-      <div *ngIf="patientsData">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Summary
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div *ngIf="patientsData">
 
 
 
-        Effected :  {{patientsData.length}}
+            Effected : {{patientsData.length}}<br>
 
-         Recovered  :  {{patientsRecoveredData.length}}
+            Recovered : {{patientsRecoveredData.length}}<br>
 
-            Current Patients :  {{patientHptlData.length}}
+            Current Patients : {{patientHptlData.length}}<br>
 
-              Death :  {{patientDeathData.length}}
+            Death : {{patientDeathData.length}}
 
-      </div>
-    </mat-card-content>
-  </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
-
-
-
-<mat-grid-list cols="1" rowHeight="550px">
-  <mat-grid-tile colspan="1" rowspan="1">
-<mat-card class="p-55">
-  <mat-card-header>
-    <mat-card-title>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="dashboard-card-content">
-    <div *ngIf="patientsData">
-      <div *ngIf="allState">
-
-      <app-bar-chart [allState]="allState">
-
-      </app-bar-chart>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 
 
-    </div></div>
-  </mat-card-content>
-</mat-card>
-</mat-grid-tile>
-</mat-grid-list>
+  <mat-accordion *ngIf="allState">
 
-<!-- <mat-grid-list cols="2" rowHeight="450px">
-<mat-grid-tile colspan="1" rowspan="1">
-  <mat-card class="dashboard-card">
-    <mat-card-header>
-      <mat-card-title>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="dashboard-card-content">
-      <div *ngIf="patientsData">
+    <mat-expansion-panel *ngFor="let item of allState | keyvalue">
+      <mat-expansion-panel-header (click)="onDivClick(item.key)">
+        <mat-panel-title>
+          {{item.key}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{item.value}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-       <app-line-chart>
 
-       </app-line-chart>
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let item of state_status | keyvalue">
+          {{item.key}}  :{{item.value}}
+        </mat-list-item>
 
-      </div>
-    </mat-card-content>
-  </mat-card>
-</mat-grid-tile>
+      </mat-list>
 
-</mat-grid-list> -->
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+
+
+
+
+  <mat-grid-list cols="1" rowHeight="550px">
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div *ngIf="patientsData">
+            <div *ngIf="allState">
+
+              <app-bar-chart [allState]="allState">
+
+              </app-bar-chart>
+
+
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 
 
 </div>

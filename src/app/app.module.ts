@@ -29,6 +29,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatExpansionModule,
     HttpClientModule,
     ChartsModule,
+    MatListModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

@@ -24,12 +24,14 @@ export class DashboardComponent implements OnInit {
   patientDeathData;
 
   keys;
-
+  stateData;
   // states=[ "Kerala", "Delhi", "Telangana", "Rajasthan", "Haryana", "Uttar Pradesh", "Ladakh", "Tamil Nadu", "Jammu and Kashmir", "Karnataka", "Maharashtra", "Punjab", "Andhra Pradesh", "Uttarakhand", "Odisha", "Puducherry", "West Bengal", "Chandigarh", "Chhattisgarh", "Gujarat", "Himachal Pradesh", "Madhya Pradesh" ]
 
   allState;
   allstatus;
   values;
+
+  state_status;
 
   ngOnInit() {
     this.patientApi.GeAllPatients().subscribe(data => {
@@ -52,14 +54,24 @@ export class DashboardComponent implements OnInit {
             this.allState = _.countBy(this.patientsAllData, "Detected State");
             this.allstatus = _.countBy(this.patientsAllData, "Current Status");
 
-            this.keys = _.keys(this.allState);
-            this.values = _.values(this.allState);
+
 
 
     });
 
   }
 
+
+  onDivClick(state){
+    console.log("DIV is clicked!",state);
+
+    this.stateData = this.patientsData.filter(
+      statedata => statedata['Detected State'] === state);
+      console.log(this.stateData);
+
+      this.state_status = _.countBy(this.stateData, "Current Status");
+
+  }
 
 
 
